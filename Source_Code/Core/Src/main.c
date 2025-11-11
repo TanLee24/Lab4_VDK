@@ -94,21 +94,21 @@ int main(void)
   SCH_Init();   // Initialize scheduler
 
   // Led Blinky
-  SCH_Add_Task(ledBlinky, 0, 1000);
+  SCH_Add_Task(ledBlinky, 0, 100);
 
   // Device Driver
   setTimer(3, 50); // Blink 7SEG and single LEDs when moding
-  SCH_Add_Task(timerRun, 0, 10);      // Update timer per 10ms
-  SCH_Add_Task(readButton, 0, 10);    // Read button per 10ms
+  SCH_Add_Task(timerRun, 0, 1);      // Update timer per 10ms
+  SCH_Add_Task(readButton, 0, 1);    // Read button per 10ms
 
   // FSM
   status1 = INIT;
   status2 = INIT;
   HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
   HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
-  SCH_Add_Task(fsm_automatic_run, 0, 100);
-  SCH_Add_Task(fsm_config, 0, 100);
-  SCH_Add_Task(fsm_manual_run, 0, 100);
+  SCH_Add_Task(fsm_automatic_run, 0, 1);
+  SCH_Add_Task(fsm_config, 0, 1);
+  SCH_Add_Task(fsm_manual_run, 0, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
